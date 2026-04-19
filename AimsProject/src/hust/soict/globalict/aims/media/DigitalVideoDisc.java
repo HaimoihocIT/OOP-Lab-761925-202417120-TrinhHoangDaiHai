@@ -1,8 +1,6 @@
 package hust.soict.globalict.aims.media;
 
-public class DigitalVideoDisc extends Media {
-    private String director;
-    private int length;
+public class DigitalVideoDisc extends Disc {
 
     private static int nbDigitalVideoDiscs = 0;
 
@@ -23,8 +21,7 @@ public class DigitalVideoDisc extends Media {
     }
 
     public DigitalVideoDisc(String director, String category, String title, float cost) {
-        super();
-        this.director = director;
+        super(0, director); // Truyền length mặc định là 0 và director lên constructor của Disc
         this.setCategory(category);
         this.setTitle(title);
         this.setCost(cost);
@@ -33,21 +30,11 @@ public class DigitalVideoDisc extends Media {
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-        super();
+        super(length, director); // Truyền length và director lên constructor của Disc
         this.setTitle(title);
         this.setCategory(category);
-        this.director = director;
-        this.length = length;
         this.setCost(cost);
         nbDigitalVideoDiscs++;
         this.setId(nbDigitalVideoDiscs);
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public int getLength() {
-        return length;
     }
 }
