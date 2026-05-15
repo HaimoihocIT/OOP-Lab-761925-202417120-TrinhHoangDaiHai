@@ -5,6 +5,7 @@ import hust.soict.globalict.aims.media.Media;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.SortedMap;
 
 public class StoreManagerScreen extends JFrame {
     private Store store;
@@ -54,7 +55,7 @@ public class StoreManagerScreen extends JFrame {
         center.setLayout(new GridLayout(3, 3, 2, 2));
 
         ArrayList<Media> mediaInStore = store.getItemsInStore();
-        for (int i=0; i<9; i++) {
+        for (int i=0; i<mediaInStore.size(); i++) {
             MediaStore cell = new MediaStore(mediaInStore.get(i));
             center.add(cell);
         }
@@ -73,6 +74,11 @@ public class StoreManagerScreen extends JFrame {
         setSize(1024, 768);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    public static void main(String[] args){
+        Store store = new Store();
+        new StoreManagerScreen(store);
     }
 }
 
