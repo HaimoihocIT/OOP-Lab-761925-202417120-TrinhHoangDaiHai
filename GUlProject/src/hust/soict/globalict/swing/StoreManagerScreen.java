@@ -5,6 +5,8 @@ import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.SortedMap;
 
@@ -20,12 +22,47 @@ public class StoreManagerScreen extends JFrame {
 
     JMenuBar createMenuBar() {
         JMenu menu = new JMenu("Options");
-        menu.add(new JMenuItem("View store"));
+        JMenuItem viewStoreMenu = new JMenuItem("View store");
+        viewStoreMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new StoreManagerScreen(store);
+                dispose();
+            }
+        });
+        menu.add(viewStoreMenu);
 
         JMenu smUpdateStore = new JMenu("Update Store");
-        smUpdateStore.add(new JMenuItem("Add Book"));
-        smUpdateStore.add(new JMenuItem("Add CD"));
-        smUpdateStore.add(new JMenuItem("Add DVD"));
+        JMenuItem addBookMenu = new JMenuItem("Add Book");
+        addBookMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddBookToStoreScreen(store);
+                dispose();
+            }
+        });
+        smUpdateStore.add(addBookMenu);
+        
+        JMenuItem addCDMenu = new JMenuItem("Add CD");
+        addCDMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddCompactDiscToStoreScreen(store);
+                dispose();
+            }
+        });
+        smUpdateStore.add(addCDMenu);
+        
+        JMenuItem addDVDMenu = new JMenuItem("Add DVD");
+        addDVDMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddDigitalVideoDiscToStoreScreen(store);
+                dispose();
+            }
+        });
+        smUpdateStore.add(addDVDMenu);
+        
         menu.add(smUpdateStore);
 
         JMenuBar menuBar = new JMenuBar();
