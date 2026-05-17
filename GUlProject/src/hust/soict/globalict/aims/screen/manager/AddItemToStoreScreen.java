@@ -1,6 +1,7 @@
-package hust.soict.globalict.swing;
+package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.store.Store;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

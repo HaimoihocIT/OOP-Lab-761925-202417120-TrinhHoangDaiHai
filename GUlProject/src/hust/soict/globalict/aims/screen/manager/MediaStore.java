@@ -1,4 +1,4 @@
-package hust.soict.globalict.swing;
+package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.media.Playable;
 
@@ -6,8 +6,6 @@ import hust.soict.globalict.aims.media.Media;
 import javax.swing.*;
 
 import java.awt.*;
-
-import static java.awt.Component.CENTER_ALIGNMENT;
 
 public class MediaStore extends JPanel {
     private Media media;

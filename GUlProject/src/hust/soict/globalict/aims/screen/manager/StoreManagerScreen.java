@@ -1,14 +1,14 @@
-package hust.soict.globalict.swing;
+package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.store.Store;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.SortedMap;
 
 public class StoreManagerScreen extends JFrame {
     private Store store;
