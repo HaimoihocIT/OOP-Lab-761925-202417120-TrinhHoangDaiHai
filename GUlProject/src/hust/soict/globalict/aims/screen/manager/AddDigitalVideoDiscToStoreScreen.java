@@ -1,23 +1,23 @@
-package hust.soict.globalict.swing;
+package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.store.Store;
-import hust.soict.globalict.aims.media.Book;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddBookToStoreScreen extends AddItemToStoreScreen {
+public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
 
-    public AddBookToStoreScreen(Store store) {
+    public AddDigitalVideoDiscToStoreScreen(Store store) {
         super(store);
-        setTitle("Add Book");
+        setTitle("Add DVD");
     }
 
     @Override
     protected JPanel createCenter() {
         JPanel center = new JPanel();
-        center.setLayout(new GridLayout(4, 2, 5, 5));
+        center.setLayout(new GridLayout(6, 2, 5, 5));
         
         JLabel titleLabel = new JLabel("Title: ");
         JTextField titleField = new JTextField();
@@ -25,30 +25,37 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
         JLabel categoryLabel = new JLabel("Category: ");
         JTextField categoryField = new JTextField();
         
+        JLabel directorLabel = new JLabel("Director: ");
+        JTextField directorField = new JTextField();
+        
+        JLabel lengthLabel = new JLabel("Length: ");
+        JTextField lengthField = new JTextField();
+        
         JLabel costLabel = new JLabel("Cost: ");
         JTextField costField = new JTextField();
         
-        JButton addButton = new JButton("Add Book");
+        JButton addButton = new JButton("Add DVD");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     String title = titleField.getText();
                     String category = categoryField.getText();
+                    String director = directorField.getText();
+                    int length = Integer.parseInt(lengthField.getText());
                     float cost = Float.parseFloat(costField.getText());
                     
-                    Book book = new Book();
-                    book.setTitle(title);
-                    book.setCategory(category);
-                    book.setCost(cost);
+                    DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, director, length, cost);
                     
-                    store.addMedia(book);
-                    JOptionPane.showMessageDialog(null, "Book added successfully!");
+                    store.addMedia(dvd);
+                    JOptionPane.showMessageDialog(null, "DVD added successfully!");
                     titleField.setText("");
                     categoryField.setText("");
+                    directorField.setText("");
+                    lengthField.setText("");
                     costField.setText("");
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid cost!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Invalid length or cost!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -57,6 +64,10 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
         center.add(titleField);
         center.add(categoryLabel);
         center.add(categoryField);
+        center.add(directorLabel);
+        center.add(directorField);
+        center.add(lengthLabel);
+        center.add(lengthField);
         center.add(costLabel);
         center.add(costField);
         center.add(new JLabel()); // empty cell
@@ -64,7 +75,7 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
         
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new FlowLayout(FlowLayout.CENTER));
-        center.setPreferredSize(new Dimension(400, 150));
+        center.setPreferredSize(new Dimension(400, 200));
         wrapper.add(center);
         
         return wrapper;

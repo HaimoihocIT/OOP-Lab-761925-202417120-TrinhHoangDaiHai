@@ -1,23 +1,23 @@
-package hust.soict.globalict.swing;
+package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.store.Store;
-import hust.soict.globalict.aims.media.CompactDisc;
+import hust.soict.globalict.aims.media.Book;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
+public class AddBookToStoreScreen extends AddItemToStoreScreen {
 
-    public AddCompactDiscToStoreScreen(Store store) {
+    public AddBookToStoreScreen(Store store) {
         super(store);
-        setTitle("Add CD");
+        setTitle("Add Book");
     }
 
     @Override
     protected JPanel createCenter() {
         JPanel center = new JPanel();
-        center.setLayout(new GridLayout(6, 2, 5, 5));
+        center.setLayout(new GridLayout(4, 2, 5, 5));
         
         JLabel titleLabel = new JLabel("Title: ");
         JTextField titleField = new JTextField();
@@ -28,13 +28,7 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
         JLabel costLabel = new JLabel("Cost: ");
         JTextField costField = new JTextField();
         
-        JLabel directorLabel = new JLabel("Director: ");
-        JTextField directorField = new JTextField();
-        
-        JLabel artistLabel = new JLabel("Artist: ");
-        JTextField artistField = new JTextField();
-        
-        JButton addButton = new JButton("Add CD");
+        JButton addButton = new JButton("Add Book");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,18 +36,17 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
                     String title = titleField.getText();
                     String category = categoryField.getText();
                     float cost = Float.parseFloat(costField.getText());
-                    String director = directorField.getText();
-                    String artist = artistField.getText();
                     
-                    CompactDisc cd = new CompactDisc(0, title, category, cost, director, artist);
+                    Book book = new Book();
+                    book.setTitle(title);
+                    book.setCategory(category);
+                    book.setCost(cost);
                     
-                    store.addMedia(cd);
-                    JOptionPane.showMessageDialog(null, "CD added successfully!");
+                    store.addMedia(book);
+                    JOptionPane.showMessageDialog(null, "Book added successfully!");
                     titleField.setText("");
                     categoryField.setText("");
                     costField.setText("");
-                    directorField.setText("");
-                    artistField.setText("");
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Invalid cost!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -66,16 +59,12 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
         center.add(categoryField);
         center.add(costLabel);
         center.add(costField);
-        center.add(directorLabel);
-        center.add(directorField);
-        center.add(artistLabel);
-        center.add(artistField);
         center.add(new JLabel()); // empty cell
         center.add(addButton);
         
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new FlowLayout(FlowLayout.CENTER));
-        center.setPreferredSize(new Dimension(400, 200));
+        center.setPreferredSize(new Dimension(400, 150));
         wrapper.add(center);
         
         return wrapper;
